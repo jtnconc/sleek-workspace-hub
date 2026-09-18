@@ -412,7 +412,7 @@ function TasksContent({
       return a.index - b.index;
     })
     .map(({ t }) => t);
-  const accent = accentVar(widget.tint ?? "orange");
+  const accent = widget.tint ? accentVar(widget.tint) : "var(--primary)";
 
   return (
     <>
@@ -573,7 +573,7 @@ function RemindersContent({
   }, []);
 
   if (widget.content.kind !== "reminders") return null;
-  const accent = accentVar(widget.tint ?? "orange");
+  const accent = widget.tint ? accentVar(widget.tint) : "var(--primary)";
   const showCompleted = selectedFilters.includes("completed");
   const items = widget.content.items
     .filter((r) => matchesQuery(r.title, searchQuery))
