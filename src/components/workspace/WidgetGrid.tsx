@@ -427,7 +427,7 @@ export function WidgetGrid() {
         const Icon = widgetIcon(w.type, w.icon);
         const active = activeWidget === w.id;
         const isDragging = dragId === w.id;
-        const accent = accentVar(w.accent);
+        const accent = w.tint ? accentVar(w.tint) : "var(--primary)";
         const isSticky = w.type === "sticky";
         const isCustomizing = customizing === w.id;
         const pulse = pulses[w.id];
