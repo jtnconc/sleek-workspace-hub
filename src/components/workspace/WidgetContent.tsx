@@ -868,7 +868,9 @@ function ContactsContent({
             className="group relative min-w-0 rounded-xl bg-surface-2 px-3 py-2"
             style={
               widget.tint
-                ? { backgroundColor: `color-mix(in oklab, ${tintVar(widget.tint)} 60%, white 40%)` }
+                ? {
+                    backgroundColor: `color-mix(in oklab, ${accentVar(widget.tint)} 22%, ${tintVar(widget.tint)} 78%)`,
+                  }
                 : undefined
             }
             onClick={() => setTapped((v) => (v === p.id ? null : p.id))}
@@ -1086,8 +1088,8 @@ function NotesContent({ widget }: { widget: Widget }) {
               widget.tint
                 ? {
                     backgroundColor: n.pinned
-                      ? `color-mix(in oklab, ${tintVar(widget.tint)} 45%, white 55%)`
-                      : `color-mix(in oklab, ${tintVar(widget.tint)} 60%, white 40%)`,
+                      ? `color-mix(in oklab, ${accentVar(widget.tint)} 35%, ${tintVar(widget.tint)} 65%)`
+                      : `color-mix(in oklab, ${accentVar(widget.tint)} 22%, ${tintVar(widget.tint)} 78%)`,
                   }
                 : undefined
             }

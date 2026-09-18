@@ -1,6 +1,6 @@
 import type { WidgetAccent, WidgetIconName } from "@/workspace/types";
 import { cn } from "@/lib/utils";
-import { ACCENTS, tintVar } from "./AccentControl";
+import { ACCENTS, accentVar, tintVar } from "./AccentControl";
 import { WIDGET_ICONS, WIDGET_ICON_NAMES } from "./widget-icons";
 
 const stop = (e: React.SyntheticEvent) => e.stopPropagation();
@@ -35,7 +35,9 @@ export function WidgetCustomizer({
       className="mb-3 space-y-2 rounded-xl bg-surface-2 p-2"
       style={
         tint
-          ? { backgroundColor: `color-mix(in oklab, ${tintVar(tint)} 55%, white 45%)` }
+          ? {
+              backgroundColor: `color-mix(in oklab, ${accentVar(tint)} 25%, ${tintVar(tint)} 75%)`,
+            }
           : undefined
       }
     >
