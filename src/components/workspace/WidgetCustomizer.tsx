@@ -35,9 +35,7 @@ export function WidgetCustomizer({
       className="mb-3 space-y-2 rounded-xl bg-surface-2 p-2"
       style={
         tint
-          ? {
-              backgroundColor: `color-mix(in oklab, ${accentVar(tint)} 25%, ${tintVar(tint)} 75%)`,
-            }
+          ? { backgroundColor: `color-mix(in oklab, ${tintVar(tint)} 55%, white 45%)` }
           : undefined
       }
     >
