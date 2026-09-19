@@ -10,6 +10,7 @@ import { RatesTool } from "@/components/tools/RatesTool";
 import { QuoteTool } from "@/components/tools/QuoteTool";
 import { useAlertNotifications } from "@/lib/use-alert-notifications";
 import { cn } from "@/lib/utils";
+import { getEnabledTools, isToolEnabled, subscribeEnabledTools } from "@/lib/tool-visibility";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,7 +91,9 @@ function Workspace({
   onToggleQuotePreview: () => void;
   onShowQuotePreview: () => void;
 }) {
-  const { mode, activeTool, widgets } = useWorkspace();
+  const { mode, activeTool, widgets, openTool } = useWorkspace();
+  const [notesEnabled, setNotesEnabled] = useState(() => isToolEnabled("notes"));
+  useEffect(() => subscribeEnabledTools(() => setNotesEnabled(isToolEnabled("notes"))), []);
   const toolMode = mode === "tool";
   useAlertNotifications(widgets);
 
