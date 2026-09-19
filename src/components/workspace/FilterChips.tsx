@@ -64,9 +64,7 @@ export function FilterChips({
                           backgroundColor: isActive
                             ? `color-mix(in srgb, var(--primary) 18%, transparent)`
                             : "transparent",
-                          borderColor: isActive
-                            ? `color-mix(in srgb, var(--primary) 35%, transparent)`
-                            : "transparent",
+                          borderColor: isActive ? "transparent" : "transparent",
                           color: isActive
                             ? `color-mix(in srgb, var(--primary) 85%, var(--foreground))`
                             : `color-mix(in srgb, var(--primary) 70%, var(--foreground))`,

@@ -32,6 +32,7 @@ export function SizeControl({
   returnLabel = "Return note to Notes list",
   onCustomize,
   customizing = false,
+  accent,
 }: {
   value: WidgetSize;
   onChange: (size: WidgetSize) => void;
@@ -49,6 +50,9 @@ export function SizeControl({
 
   /** whether the customizer is currently open, for the active-state highlight */
   customizing?: boolean;
+
+  /** optional accent color used for the collapsed dot */
+  accent?: string;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -167,8 +171,10 @@ export function SizeControl({
           }}
           className={cn(
             "flex size-4 items-center justify-center rounded-full transition-colors hover:text-foreground",
-            locked ? "text-foreground/70" : "text-muted-foreground/50",
           )}
+          style={{
+            color: `color-mix(in srgb, ${accent ?? "var(--muted-foreground)"} ${locked ? 75 : 45}%, var(--muted-foreground))`,
+          }}
         >
           <span className="size-[5px] rounded-full bg-current" />
         </button>
