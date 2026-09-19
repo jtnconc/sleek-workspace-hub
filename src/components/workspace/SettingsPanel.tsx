@@ -224,7 +224,7 @@ export function SettingsPanel() {
           <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
             Tools
           </p>
-          <div className="-mx-1 divide-y divide-border rounded-md border border-border">
+          <div className="-mx-1 divide-y divide-border overflow-hidden rounded-md border border-border">
             {TOOL_OPTIONS.map((t) => {
               const Icon = t.icon;
               const on = isToolEnabled(t.id);
