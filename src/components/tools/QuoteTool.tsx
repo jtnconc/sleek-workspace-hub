@@ -527,7 +527,7 @@ const toggleItem = (itemId: string) => {
                 onChange={(iso) => updateQuote({ issueDate: iso })}
                 size="sm"
                 aria-label="Issue date"
-                className="w-full max-w-[9.5rem]"
+                className="h-9 w-full max-w-[9.5rem]"
               />
 
               <p className="tabular-nums text-[11px] text-muted-foreground">
