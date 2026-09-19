@@ -86,6 +86,8 @@ export function SettingsPanel() {
   const [activeFont, setActiveFont] = useState(() => getNotesBaseFontFamily());
   const [fontSize, setFontSize] = useState(() => getNotesBaseFontSize());
   const [sizeInput, setSizeInput] = useState(() => String(getNotesBaseFontSize()));
+  const [enabledTools, setEnabledTools] = useState(() => getEnabledTools());
+  useEffect(() => subscribeEnabledTools(() => setEnabledTools(getEnabledTools())), []);
 
   useEffect(() => {
     const sync = () => {
