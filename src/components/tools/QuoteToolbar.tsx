@@ -65,7 +65,7 @@ export function QuoteToolbar({
       ? [
           {
             key: "history",
-            icon: ClockCounterClockwise,
+            icon: CaretLeft,
             label: "Quote history",
             disabled: false,
             onClick: onToggleHistory,
