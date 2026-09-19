@@ -32,6 +32,7 @@ export function SizeControl({
   returnLabel = "Return note to Notes list",
   onCustomize,
   customizing = false,
+  accent,
 }: {
   value: WidgetSize;
   onChange: (size: WidgetSize) => void;
@@ -49,6 +50,9 @@ export function SizeControl({
 
   /** whether the customizer is currently open, for the active-state highlight */
   customizing?: boolean;
+
+  /** optional accent color used for the collapsed dot */
+  accent?: string;
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
