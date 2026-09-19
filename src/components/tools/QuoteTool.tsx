@@ -28,7 +28,7 @@ import {
   quoteTotals,
 } from "@/lib/quote-model";
 
-import { generateQuotePdf, quotePdfPreviewUrl } from "@/lib/quote-pdf";
+import { generateQuotePdf, quotePdfPreviewData } from "@/lib/quote-pdf";
 
 const QuotePdfViewer = lazy(() =>
   import("@/components/tools/QuotePdfViewer").then((m) => ({ default: m.QuotePdfViewer })),
