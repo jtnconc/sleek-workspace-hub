@@ -551,7 +551,7 @@ const toggleItem = (itemId: string) => {
               <label className="flex w-[7.5rem] shrink-0 flex-col gap-1">
                 <span className="label-xs">{lang === "es" ? "Etiqueta" : "Treatment"}</span>
                 <SoftSelect
-                  className="h-7 w-auto shrink-0 rounded-full border-primary/30 bg-primary/15 px-2 py-0.5 text-[11px] font-medium text-primary [&>svg]:text-primary [&>svg]:opacity-90"
+                  className="h-9 w-auto shrink-0 rounded-full border-primary/30 bg-primary/15 px-2 py-1.5 text-[11px] font-medium text-primary [&>svg]:text-primary [&>svg]:opacity-90"
                   value={quote.salutation ?? "Estimado"}
                   onChange={(v) => {
                     // Selects commit on selection — log immediately.
@@ -572,7 +572,7 @@ const toggleItem = (itemId: string) => {
                   onChange={(e) => updateQuote({ recipient: e.target.value })}
                   onFocus={captureFieldValue("recipient")}
                   onBlur={commitTextField("recipient")}
-                  className={cn(inputCls, "bg-[rgba(100,116,139,0.05)]", missingRecipient && "border-destructive/60 focus-visible:ring-destructive/40")}
+                  className={cn(inputCls, "h-9", missingRecipient && "border-destructive/60 focus-visible:ring-destructive/40")}
                   aria-invalid={missingRecipient}
                 />
                 {missingRecipient && (
@@ -589,7 +589,7 @@ const toggleItem = (itemId: string) => {
                 onChange={(e) => updateQuote({ company: e.target.value })}
                 onFocus={captureFieldValue("company")}
                 onBlur={commitTextField("company")}
-                className={cn(inputCls, "bg-[rgba(100,116,139,0.05)]")}
+                className={cn(inputCls, "h-9")}
               />
             </label>
           </div>
@@ -662,7 +662,7 @@ const toggleItem = (itemId: string) => {
                         aria-label={L.qty}
                         className={cn(
                           monoInput,
-                          "number-input-clean h-8 w-12 shrink-0 bg-[rgba(100,116,139,0.05)] px-2 py-1 text-center font-semibold",
+                          "number-input-clean h-9 w-12 shrink-0 px-2 py-1 text-center font-semibold",
                         )}
                       />
                       {item.kind === "other" ? (
@@ -701,7 +701,7 @@ const toggleItem = (itemId: string) => {
                                       : "+ Manage/Edit room types",
                                 },
                               ]}
-                              className="h-8 border-primary/30 bg-primary/15 px-2 py-1 font-semibold text-primary shadow-none [&>svg]:text-primary [&>svg]:opacity-90"
+                              className="h-9 border-primary/30 bg-primary/15 px-2 py-1.5 font-semibold text-primary shadow-none [&>svg]:text-primary [&>svg]:opacity-90"
                               aria-label={L.roomType}
                             />
                           </div>
@@ -714,7 +714,7 @@ const toggleItem = (itemId: string) => {
                               value: option,
                               label: option,
                             }))}
-                            className="h-7 w-auto shrink-0 rounded-full border-primary/30 bg-primary/15 px-2 py-0.5 text-[11px] font-medium text-primary [&>svg]:text-primary [&>svg]:opacity-90"
+                            className="h-9 w-auto shrink-0 rounded-full border-primary/30 bg-primary/15 px-2 py-1.5 text-[11px] font-medium text-primary [&>svg]:text-primary [&>svg]:opacity-90"
                             aria-label={L.accommodation}
                           />
                         </>
@@ -726,7 +726,7 @@ const toggleItem = (itemId: string) => {
                         }
                         placeholder={lang === "es" ? "Huésped" : "Guest Name"}
                         aria-label={L.guest}
-                        className={cn(inputCls, "h-8 min-w-0 flex-1 bg-[rgba(100,116,139,0.05)] py-1")}
+                        className={cn(inputCls, "h-9 min-w-0 flex-1 py-1")}
                       />
                       <button
                         type="button"
