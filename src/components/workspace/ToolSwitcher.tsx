@@ -1,9 +1,11 @@
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FileText, NotePencil, SealPercent, type IconProps } from "@phosphor-icons/react";
 import { useWorkspace } from "@/workspace/store";
 import type { ToolId } from "@/workspace/types";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { getEnabledTools, subscribeEnabledTools } from "@/lib/tool-visibility";
 
 const TOOLS: { id: ToolId; label: string; Icon: React.ComponentType<IconProps> }[] = [
   { id: "notes", label: "Notes", Icon: NotePencil },
