@@ -28,7 +28,9 @@ const mix = (rgb: [number, number, number], amount: number): [number, number, nu
 
 /** Hotel-specific overrides for table header and services card backgrounds. */
 const TABLE_HEADER_BG: Record<string, string> = {
-  "marriott-finisterre": "#6C5D54",
+  "ac-hotel": "#656b72",
+  "marriott-finisterre": "#781f37",
+  "residence-inn": "#502b3a",
 };
 const SERVICE_CARD_BG: Record<string, string> = {
   "marriott-finisterre": "#F6F5F5",
