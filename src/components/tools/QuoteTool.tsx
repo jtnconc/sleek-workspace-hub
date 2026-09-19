@@ -509,7 +509,7 @@ const toggleItem = (itemId: string) => {
                       key={l}
                       onClick={() => switchLanguage(l)}
                       className={cn(
-                        "rounded-full px-2.5 py-1 text-[11px] uppercase transition-colors",
+                        "flex h-full items-center justify-center rounded-full px-2.5 text-[11px] uppercase transition-colors",
                         l === lang
                           ? "bg-[rgba(100,116,139,0.15)] font-medium text-slate-700"
                           : "text-muted-foreground",
