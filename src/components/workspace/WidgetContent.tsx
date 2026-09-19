@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { DotsThreeCircle, Trash } from "@phosphor-icons/react";
+import { DotsThree, Trash } from "@phosphor-icons/react";
 import {
   AlarmClock,
   ArrowUpRight,
@@ -158,7 +158,7 @@ function ItemActions({
               revealed ? "opacity-100" : "opacity-0 group-hover:opacity-40",
             )}
           >
-            <DotsThreeCircle className="size-3.5" />
+            <DotsThree className="size-3.5" />
           </button>
         </PopoverTrigger>
         <PopoverContent
