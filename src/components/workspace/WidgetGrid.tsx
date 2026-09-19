@@ -369,8 +369,10 @@ export function WidgetGrid() {
                     alertPhase === "due" && "pill-alert-pulse",
                   )}
                   style={{
-                    ...(w.type === "sticky" ? { backgroundColor: tintVar(w.tint) } : {}),
-                    ...(alertPhase === "due" ? { "--pulse-color": accentVar(w.accent) } : {}),
+                    ...(w.tint ? { backgroundColor: tintVar(w.tint) } : {}),
+                    ...(alertPhase === "due"
+                      ? { "--pulse-color": accentVar(w.tint ?? "orange") }
+                      : {}),
                   } as MotionStyle}
                 >
                   <Icon
