@@ -1062,7 +1062,7 @@ const toggleItem = (itemId: string) => {
         </div>
 
         <AnimatePresence initial={false} mode="popLayout">
-          {showPreview && pdfBlobUrl && (
+          {showPreview && pdfData && (
             <motion.div
               key="quote-preview"
               layout
@@ -1074,7 +1074,7 @@ const toggleItem = (itemId: string) => {
             >
               <ClientOnly fallback={<PdfSkeleton />}>
                 <Suspense fallback={<PdfSkeleton />}>
-                  <QuotePdfViewer url={pdfBlobUrl} />
+                  <QuotePdfViewer data={pdfData} />
                 </Suspense>
               </ClientOnly>
             </motion.div>
