@@ -154,7 +154,7 @@ function ItemActions({
             onPointerDown={stop}
             onClick={stop}
             className={cn(
-              "flex size-5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-opacity duration-200 hover:bg-secondary hover:text-foreground hover:opacity-100 focus-visible:opacity-100 data-[state=open]:bg-secondary data-[state=open]:opacity-100",
+              "flex size-5 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-opacity duration-200 hover:text-foreground hover:opacity-100 focus-visible:opacity-100 data-[state=open]:opacity-100",
               revealed ? "opacity-100" : "opacity-0 group-hover:opacity-40",
             )}
           >
