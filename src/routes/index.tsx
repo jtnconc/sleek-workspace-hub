@@ -10,6 +10,7 @@ import { RatesTool } from "@/components/tools/RatesTool";
 import { QuoteTool } from "@/components/tools/QuoteTool";
 import { useAlertNotifications } from "@/lib/use-alert-notifications";
 import { cn } from "@/lib/utils";
+import { getEnabledTools, isToolEnabled, subscribeEnabledTools } from "@/lib/tool-visibility";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -90,13 +91,21 @@ function Workspace({
   onToggleQuotePreview: () => void;
   onShowQuotePreview: () => void;
 }) {
-  const { mode, activeTool, widgets } = useWorkspace();
+  const { mode, activeTool, widgets, openTool } = useWorkspace();
+  const [notesEnabled, setNotesEnabled] = useState(() => isToolEnabled("notes"));
+  useEffect(() => subscribeEnabledTools(() => setNotesEnabled(isToolEnabled("notes"))), []);
   const toolMode = mode === "tool";
   useAlertNotifications(widgets);
 
   useEffect(() => {
     if (!(toolMode && activeTool === "quote")) onCloseQuotePanels();
   }, [toolMode, activeTool]);
+
+  useEffect(() => {
+    if (!notesEnabled && mode === "widgets") {
+      openTool(getEnabledTools()[0] ?? "quote");
+    }
+  }, [notesEnabled, mode, openTool]);
 
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col gap-2">
@@ -129,7 +138,7 @@ function Workspace({
         )}
       </section>
 
-      <WidgetGrid />
+      {notesEnabled && <WidgetGrid />}
     </div>
   );
 }
