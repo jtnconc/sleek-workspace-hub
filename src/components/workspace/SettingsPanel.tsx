@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Gear } from "@phosphor-icons/react";
+import { Gear, FileText, NotePencil, SealPercent } from "@phosphor-icons/react";
 import {
   Check,
   ChevronUp,
@@ -13,6 +13,9 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/auth/store";
 import { useWorkspace } from "@/workspace/store";
+import { cn } from "@/lib/utils";
+import type { ToolId } from "@/workspace/types";
+import { getEnabledTools, isToolEnabled, setToolEnabled, subscribeEnabledTools } from "@/lib/tool-visibility";
 import {
   applyNotesFontFamily,
   applyNotesFontSize,
@@ -55,6 +58,12 @@ const FONTS = [
   },
 ];
 
+const TOOL_OPTIONS: { id: ToolId; label: string; icon: typeof FileText }[] = [
+  { id: "notes", label: "Notes", icon: NotePencil },
+  { id: "quote", label: "Quote", icon: FileText },
+  { id: "rates", label: "Rates", icon: SealPercent },
+];
+
 const MIN_FONT_SIZE = 8;
 const MAX_FONT_SIZE = 96;
 const DEFAULT_FONT_SIZE = DEFAULT_NOTES_FONT_SIZE;
@@ -77,6 +86,8 @@ export function SettingsPanel() {
   const [activeFont, setActiveFont] = useState(() => getNotesBaseFontFamily());
   const [fontSize, setFontSize] = useState(() => getNotesBaseFontSize());
   const [sizeInput, setSizeInput] = useState(() => String(getNotesBaseFontSize()));
+  const [enabledTools, setEnabledTools] = useState(() => getEnabledTools());
+  useEffect(() => subscribeEnabledTools(() => setEnabledTools(getEnabledTools())), []);
 
   useEffect(() => {
     const sync = () => {
@@ -206,6 +217,35 @@ export function SettingsPanel() {
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+
+        <div className="space-y-1.5">
+          <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+            Tools
+          </p>
+          <div className="-mx-1 divide-y divide-border rounded-md border border-border">
+            {TOOL_OPTIONS.map((t) => {
+              const Icon = t.icon;
+              const on = isToolEnabled(t.id);
+              const isLastOne = enabledTools.length === 1 && on;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setToolEnabled(t.id, !on)}
+                  disabled={isLastOne}
+                  className={cn(
+                    "flex w-full items-center gap-2 bg-surface px-2.5 py-2 text-left transition-colors hover:bg-secondary",
+                    isLastOne && "cursor-not-allowed opacity-50 hover:bg-surface",
+                  )}
+                >
+                  <Icon className="size-[15px] shrink-0 text-muted-foreground" />
+                  <span className="flex-1 truncate text-sm text-foreground">{t.label}</span>
+                  {on && <Check className="size-[14px] shrink-0 text-primary" />}
+                </button>
+              );
+            })}
           </div>
         </div>
 
