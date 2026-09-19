@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Gear } from "@phosphor-icons/react";
+import { Gear, FileText, NotePencil, SealPercent } from "@phosphor-icons/react";
 import {
   Check,
   ChevronUp,
@@ -13,6 +13,9 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { useAuth } from "@/auth/store";
 import { useWorkspace } from "@/workspace/store";
+import { cn } from "@/lib/utils";
+import type { ToolId } from "@/workspace/types";
+import { getEnabledTools, isToolEnabled, setToolEnabled, subscribeEnabledTools } from "@/lib/tool-visibility";
 import {
   applyNotesFontFamily,
   applyNotesFontSize,
