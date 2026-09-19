@@ -369,7 +369,6 @@ export function WidgetGrid() {
                     alertPhase === "due" && "pill-alert-pulse",
                   )}
                   style={{
-                    ...(w.tint ? { backgroundColor: tintVar(w.tint) } : {}),
                     ...(alertPhase === "due"
                       ? { "--pulse-color": w.tint ? accentVar(w.tint) : "var(--primary)" }
                       : {}),
