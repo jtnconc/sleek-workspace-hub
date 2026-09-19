@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 // Explicit Vite `?url` import instead of `new URL(..., import.meta.url)`, so the
 // worker is bundled locally (works offline / behind CDN blockers) without relying
@@ -8,8 +8,8 @@ import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 interface QuotePdfViewerProps {
-  /** Blob URL of the generated quotation PDF. */
-  url: string;
+  /** Raw bytes of the generated quotation PDF. */
+  data: Uint8Array;
 }
 
 const PAGE_ASPECT = 11 / 8.5;
