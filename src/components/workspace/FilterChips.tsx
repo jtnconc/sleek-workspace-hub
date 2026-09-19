@@ -1,7 +1,6 @@
 import { AnimatePresence, motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import type { WidgetAccent } from "@/workspace/types";
-import { accentVar } from "./AccentControl";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -51,7 +50,6 @@ export function FilterChips({
               {options.map((opt) => {
                 const Icon = opt.icon;
                 const isActive = selected.includes(opt.value);
-                const wash = accentVar(opt.accent);
                 return (
                   <Tooltip key={opt.value}>
                     <TooltipTrigger asChild>
@@ -63,12 +61,14 @@ export function FilterChips({
                           "flex shrink-0 items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors",
                         )}
                         style={{
-                          backgroundColor: isActive ? `color-mix(in srgb, ${wash} 65%, black)` : "transparent",
+                          backgroundColor: isActive
+                            ? `color-mix(in srgb, var(--primary) 18%, transparent)`
+                            : "transparent",
                           borderColor: isActive
-                            ? `color-mix(in srgb, ${wash} 80%, black)`
+                            ? `color-mix(in srgb, var(--primary) 35%, transparent)`
                             : "transparent",
                           color: isActive
-                            ? "var(--primary-foreground)"
+                            ? `color-mix(in srgb, var(--primary) 85%, var(--foreground))`
                             : `color-mix(in srgb, var(--primary) 70%, var(--foreground))`,
                         }}
                       >
