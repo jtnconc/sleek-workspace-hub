@@ -58,6 +58,12 @@ const FONTS = [
   },
 ];
 
+const TOOL_OPTIONS: { id: ToolId; label: string; icon: typeof FileText }[] = [
+  { id: "notes", label: "Notes", icon: NotePencil },
+  { id: "quote", label: "Quote", icon: FileText },
+  { id: "rates", label: "Rates", icon: SealPercent },
+];
+
 const MIN_FONT_SIZE = 8;
 const MAX_FONT_SIZE = 96;
 const DEFAULT_FONT_SIZE = DEFAULT_NOTES_FONT_SIZE;
