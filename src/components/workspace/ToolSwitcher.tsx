@@ -16,10 +16,23 @@ const TOOLS: { id: ToolId; label: string; Icon: React.ComponentType<IconProps> }
 export function ToolSwitcher() {
   const { activeTool, mode, openTool } = useWorkspace();
 
+  const [enabledIds, setEnabledIds] = useState(() => getEnabledTools());
+
+  useEffect(() => subscribeEnabledTools(() => setEnabledIds(getEnabledTools())), []);
+
+  const visibleTools = TOOLS.filter((t) => enabledIds.includes(t.id));
+
+  useEffect(() => {
+    if (mode === "tool" && !enabledIds.includes(activeTool) && visibleTools[0]) {
+      openTool(visibleTools[0].id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [enabledIds, mode, activeTool]);
+
   return (
     <TooltipProvider delayDuration={700}>
       <div className="relative flex items-center gap-2 rounded-full border border-border bg-surface p-1 shadow-desk">
-        {TOOLS.map((t) => {
+        {visibleTools.map((t) => {
           const active = mode === "tool" && activeTool === t.id;
           return (
             <Tooltip key={t.id}>
