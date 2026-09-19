@@ -7,3 +7,4 @@
 - [x] Adaptar los widgets minimizados al ancho disponible sin scroll horizontal.
 - [x] Migrar los iconos solicitados a Phosphor manteniendo tamaños y comportamiento.
 - [x] Filtrar ToolSwitcher por herramientas activadas y redirigir si la actual se desactiva.
+- [ ] Agregar sección Tools en SettingsPanel para activar/desactivar herramientas.
