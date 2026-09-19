@@ -248,7 +248,7 @@ interface WorkspaceApi extends WorkspaceState {
   editNoteInEditor: (widgetId: string, itemId: string) => void;
   convertNoteToSticky: (widgetId: string, itemId: string) => void;
   returnStickyToNotes: (stickyId: string) => void;
-  setWidgetTint: (id: string, tint: WidgetAccent) => void;
+  setWidgetTint: (id: string, tint: WidgetAccent | undefined) => void;
   clearPulse: (id: string) => void;
   clearSearchPulse: () => void;
   setSearchQuery: (q: string) => void;
