@@ -43,5 +43,7 @@ export function setToolEnabled(id: ToolId, on: boolean) {
 
 export function subscribeEnabledTools(fn: () => void) {
   listeners.add(fn);
-  return () => listeners.delete(fn);
+  return () => {
+    listeners.delete(fn);
+  };
 }
