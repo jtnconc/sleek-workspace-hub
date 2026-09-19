@@ -15,7 +15,6 @@ import {
   PROPERTY_STYLES,
 } from "@/lib/property-codes";
 import { cn } from "@/lib/utils";
-import { sanitizeHtml } from "@/lib/sanitize-html";
 import {
   getNotesBaseFontSize,
   registerNotesEditor,
@@ -346,7 +345,13 @@ export function NotesTool() {
               }
 
               e.preventDefault();
-              document.execCommand("insertHTML", false, sanitizeHtml(html));
+              const plainText = e.clipboardData.getData("text/plain") ?? "";
+              const safeHtml = plainText
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/\n/g, "<br>");
+              document.execCommand("insertHTML", false, safeHtml);
             }}
             onInput={() => {
               scheduleUpdate();
