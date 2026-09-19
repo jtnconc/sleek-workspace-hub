@@ -582,6 +582,7 @@ export function WidgetGrid() {
                   }
                   onCustomize={() => setCustomizing((v) => (v === w.id ? null : w.id))}
                   customizing={isCustomizing}
+                  accent={accent}
                 />
               </div>
             </header>

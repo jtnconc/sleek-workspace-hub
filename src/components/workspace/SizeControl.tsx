@@ -167,8 +167,10 @@ export function SizeControl({
           }}
           className={cn(
             "flex size-4 items-center justify-center rounded-full transition-colors hover:text-foreground",
-            locked ? "text-foreground/70" : "text-muted-foreground/50",
           )}
+          style={{
+            color: `color-mix(in srgb, ${accent ?? "var(--muted-foreground)"} ${locked ? 75 : 45}%, var(--muted-foreground))`,
+          }}
         >
           <span className="size-[5px] rounded-full bg-current" />
         </button>
