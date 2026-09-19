@@ -58,8 +58,7 @@ export function QuotePdfViewer({ data }: QuotePdfViewerProps) {
   return (
     <div ref={containerRef} className="flex w-full flex-col items-center">
       <Document
-        key={url}
-        file={url}
+        file={file}
         onLoadSuccess={({ numPages: n }) => setNumPages(n)}
         loading={
           width > 0 ? (
