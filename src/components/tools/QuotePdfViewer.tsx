@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
 // Explicit Vite `?url` import instead of `new URL(..., import.meta.url)`, so the
 // worker is bundled locally (works offline / behind CDN blockers) without relying
@@ -8,8 +8,8 @@ import pdfWorkerUrl from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl;
 
 interface QuotePdfViewerProps {
-  /** Blob URL of the generated quotation PDF. */
-  url: string;
+  /** Raw bytes of the generated quotation PDF. */
+  data: Uint8Array;
 }
 
 const PAGE_ASPECT = 11 / 8.5;
@@ -28,10 +28,13 @@ function PageSkeleton({ width }: { width: number }) {
  * Renders the real generated PDF as canvases inside a plain div (pdf.js), so the
  * preview is pixel-accurate but free of the browser's native PDF viewer chrome.
  */
-export function QuotePdfViewer({ url }: QuotePdfViewerProps) {
+export function QuotePdfViewer({ data }: QuotePdfViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
   const [numPages, setNumPages] = useState(0);
+  // pdf.js detaches the buffer it receives, so hand it a fresh copy per document
+  // and keep the `file` object referentially stable across re-renders.
+  const file = useMemo(() => ({ data: new Uint8Array(data) }), [data]);
 
   useLayoutEffect(() => {
     const el = containerRef.current;
@@ -55,8 +58,7 @@ export function QuotePdfViewer({ url }: QuotePdfViewerProps) {
   return (
     <div ref={containerRef} className="flex w-full flex-col items-center">
       <Document
-        key={url}
-        file={url}
+        file={file}
         onLoadSuccess={({ numPages: n }) => setNumPages(n)}
         loading={
           width > 0 ? (
