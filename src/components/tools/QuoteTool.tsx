@@ -305,18 +305,11 @@ const toggleItem = (itemId: string) => {
   const logo = hotelLogos[quote.hotelId] ?? hotel.logoUrl;
   const description = selectedHotel ? quoteDescription(quote, selectedHotel) : quote.description;
 
-  /** Blob URL of the real generated PDF, rendered inline by pdf.js. */
-  const pdfBlobUrl = useMemo(
-    () => (showPreview && selectedHotel ? quotePdfPreviewUrl(quote, selectedHotel, logo) : null),
+  /** Raw bytes of the real generated PDF, rendered inline by pdf.js. */
+  const pdfData = useMemo(
+    () => (showPreview && selectedHotel ? quotePdfPreviewData(quote, selectedHotel, logo) : null),
     [showPreview, selectedHotel, quote, logo],
   );
-  // Each render of pdfBlobUrl allocates a fresh blob: URL — revoke the previous
-  // one whenever it changes (or the component unmounts) so it doesn't leak.
-  useEffect(() => {
-    return () => {
-      if (pdfBlobUrl) URL.revokeObjectURL(pdfBlobUrl);
-    };
-  }, [pdfBlobUrl]);
 
 
   const saveRoomTypes = (types: string[]) => {
