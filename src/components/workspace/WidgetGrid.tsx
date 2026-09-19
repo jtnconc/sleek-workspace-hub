@@ -518,10 +518,13 @@ export function WidgetGrid() {
                       e.stopPropagation();
                       setFiltersOpenId((v) => (v === w.id ? null : w.id));
                     }}
-                    className={cn(
-                      "flex size-5 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-secondary",
-                      filtersOpenId === w.id && "bg-secondary",
-                    )}
+                    style={{
+                      ...(filtersOpenId === w.id
+                        ? { backgroundColor: `color-mix(in srgb, ${accent} 22%, transparent)` }
+                        : {}),
+                      ["--icon-hover" as any]: `color-mix(in srgb, ${accent} 15%, transparent)`,
+                    }}
+                    className="flex size-5 shrink-0 items-center justify-center rounded-md transition-colors hover:bg-[var(--icon-hover)]"
                   >
                     <Icon size={15} className="text-primary" />
                   </button>

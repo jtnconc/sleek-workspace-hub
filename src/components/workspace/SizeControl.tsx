@@ -77,6 +77,7 @@ export function SizeControl({
       onPointerDown={stop}
       onDragStart={(e) => e.preventDefault()}
       className="flex shrink-0 items-center"
+      style={{ ["--icon-hover" as any]: `color-mix(in srgb, ${accent ?? "var(--muted-foreground)"} 15%, transparent)` }}
     >
       {open ? (
         <div className="flex items-center gap-1.5">
