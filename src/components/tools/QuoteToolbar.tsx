@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { CaretDoubleRight, ClockCounterClockwise, DownloadSimple, Eye } from "@phosphor-icons/react";
+import { CaretDoubleRight, CaretLeft, ClockCounterClockwise, DownloadSimple, Eye } from "@phosphor-icons/react";
 import { useWorkspace } from "@/workspace/store";
 import { getHotel } from "@/lib/hotels";
 import { generateQuotePdf } from "@/lib/quote-pdf";
@@ -50,32 +50,54 @@ export function QuoteToolbar({
     resetQuote();
   };
 
-  const buttons = [
-    {
-      key: "preview",
-      icon: Eye,
-      label: "Preview quotation",
-      disabled: !selected,
-      onClick: onTogglePreview,
-      active: preview,
-    },
-    {
-      key: "download",
-      icon: DownloadSimple,
-      label: "Download PDF",
-      disabled: !selected,
-      onClick: download,
-      active: false,
-    },
-    {
-      key: "history",
-      icon: ClockCounterClockwise,
-      label: "Quote history",
-      disabled: false,
-      onClick: onToggleHistory,
-      active: history,
-    },
-  ];
+  const buttons = preview
+    ? [
+        {
+          key: "preview",
+          icon: CaretLeft,
+          label: "Back to quote",
+          disabled: false,
+          onClick: onTogglePreview,
+          active: true,
+        },
+      ]
+    : history
+      ? [
+          {
+            key: "history",
+            icon: ClockCounterClockwise,
+            label: "Quote history",
+            disabled: false,
+            onClick: onToggleHistory,
+            active: true,
+          },
+        ]
+      : [
+          {
+            key: "preview",
+            icon: Eye,
+            label: "Preview quotation",
+            disabled: !selected,
+            onClick: onTogglePreview,
+            active: preview,
+          },
+          {
+            key: "download",
+            icon: DownloadSimple,
+            label: "Download PDF",
+            disabled: !selected,
+            onClick: download,
+            active: false,
+          },
+          {
+            key: "history",
+            icon: ClockCounterClockwise,
+            label: "Quote history",
+            disabled: false,
+            onClick: onToggleHistory,
+            active: history,
+          },
+        ];
   const visibleButtons = buttons.slice(0, visibleCount);
   const overflowButtons = buttons.slice(visibleCount);
 
