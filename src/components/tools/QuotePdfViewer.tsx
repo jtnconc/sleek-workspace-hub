@@ -28,10 +28,13 @@ function PageSkeleton({ width }: { width: number }) {
  * Renders the real generated PDF as canvases inside a plain div (pdf.js), so the
  * preview is pixel-accurate but free of the browser's native PDF viewer chrome.
  */
-export function QuotePdfViewer({ url }: QuotePdfViewerProps) {
+export function QuotePdfViewer({ data }: QuotePdfViewerProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
   const [numPages, setNumPages] = useState(0);
+  // pdf.js detaches the buffer it receives, so hand it a fresh copy per document
+  // and keep the `file` object referentially stable across re-renders.
+  const file = useMemo(() => ({ data: new Uint8Array(data) }), [data]);
 
   useLayoutEffect(() => {
     const el = containerRef.current;
