@@ -220,6 +220,35 @@ export function SettingsPanel() {
           </div>
         </div>
 
+        <div className="space-y-1.5">
+          <p className="text-[11px] font-medium uppercase tracking-wide text-muted-foreground">
+            Tools
+          </p>
+          <div className="-mx-1 divide-y divide-border rounded-md border border-border">
+            {TOOL_OPTIONS.map((t) => {
+              const Icon = t.icon;
+              const on = isToolEnabled(t.id);
+              const isLastOne = enabledTools.length === 1 && on;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setToolEnabled(t.id, !on)}
+                  disabled={isLastOne}
+                  className={cn(
+                    "flex w-full items-center gap-2 bg-surface px-2.5 py-2 text-left transition-colors hover:bg-secondary",
+                    isLastOne && "cursor-not-allowed opacity-50 hover:bg-surface",
+                  )}
+                >
+                  <Icon className="size-[15px] shrink-0 text-muted-foreground" />
+                  <span className="flex-1 truncate text-sm text-foreground">{t.label}</span>
+                  {on && <Check className="size-[14px] shrink-0 text-primary" />}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
         <button
           type="button"
           onClick={lock}
