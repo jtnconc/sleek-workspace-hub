@@ -101,6 +101,12 @@ function Workspace({
     if (!(toolMode && activeTool === "quote")) onCloseQuotePanels();
   }, [toolMode, activeTool]);
 
+  useEffect(() => {
+    if (!notesEnabled && mode === "widgets") {
+      openTool(getEnabledTools()[0] ?? "quote");
+    }
+  }, [notesEnabled, mode, openTool]);
+
   return (
     <div className="flex min-h-0 w-full flex-1 flex-col gap-2">
       {/* Tool area — expands in tool mode, retracts fully in widget mode.
