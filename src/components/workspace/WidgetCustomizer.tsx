@@ -21,7 +21,7 @@ export function WidgetCustomizer({
   icon?: WidgetIconName | undefined;
   tint?: WidgetAccent | undefined;
   onIcon: (icon: WidgetIconName) => void;
-  onTint: (tint: WidgetAccent) => void;
+  onTint: (tint: WidgetAccent | undefined) => void;
   /** false hides the icon picker entirely, leaving only card color — used
    * for base widgets (Reminders/Contacts/Tasks/Notes) so their identifying
    * icon can't be swapped away. */
@@ -64,6 +64,23 @@ export function WidgetCustomizer({
       </div>
       )}
       <div className="flex items-center gap-1.5">
+        <button
+          type="button"
+          aria-label="Reset card color"
+          title="Reset to default"
+          onClick={(e) => {
+            e.stopPropagation();
+            onTint(undefined);
+          }}
+          className={cn(
+            "size-[14px] rounded-md border border-border bg-surface transition-transform hover:scale-110",
+            !tint && "ring-1 ring-foreground/40 ring-offset-1",
+          )}
+          style={{
+            backgroundImage:
+              "linear-gradient(to top right, transparent 46%, var(--destructive) 48%, var(--destructive) 52%, transparent 54%)",
+          }}
+        />
         {ACCENTS.map((a) => (
           <button
             key={a}

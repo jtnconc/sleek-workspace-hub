@@ -142,7 +142,7 @@ export interface Widget {
   /** customized header icon (falls back to the type default) */
   icon?: WidgetIconName;
   /** ultra-light pastel background tint (sticky notes only) */
-  tint?: WidgetAccent;
+  tint?: WidgetAccent | undefined;
   /** when true, both the card's width and height are pinned: presets and the
    * drag-resize handle are disabled and overflow scrolls internally */
   sizeLocked?: boolean;
