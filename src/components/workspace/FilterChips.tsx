@@ -63,11 +63,13 @@ export function FilterChips({
                           "flex shrink-0 items-center gap-1 rounded-full border px-2.5 py-1 text-[11px] font-medium transition-colors",
                         )}
                         style={{
-                          backgroundColor: `color-mix(in srgb, ${wash} ${isActive ? 20 : 10}%, transparent)`,
+                          backgroundColor: isActive ? `color-mix(in srgb, ${wash} 65%, black)` : "transparent",
                           borderColor: isActive
-                            ? `color-mix(in srgb, ${wash} 45%, transparent)`
+                            ? `color-mix(in srgb, ${wash} 80%, black)`
                             : "transparent",
-                          color: `color-mix(in srgb, ${wash} 75%, var(--foreground))`,
+                          color: isActive
+                            ? "var(--primary-foreground)"
+                            : `color-mix(in srgb, var(--primary) 70%, var(--foreground))`,
                         }}
                       >
                         <Icon className="size-3 shrink-0" />
