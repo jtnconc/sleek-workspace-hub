@@ -320,7 +320,7 @@
   --w-purple: oklch(0.52 0.14 300);
 
   /* Sticky note background tints — ultra-light pastels, cool + warm */
-  --w-tint-neutral: #f8f9fa;
+  --w-tint-neutral: #eaedf1;
   --w-tint-blue: #eaf4fe;
   --w-tint-green: #ecfaef;
   --w-tint-yellow: #fefbe4;
