@@ -94,7 +94,7 @@ export function SizeControl({
                 onChange(s);
                 setOpen(false);
               }}
-              className="flex size-[18px] items-center justify-center rounded-[5px] transition-colors hover:bg-secondary disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent"
+              className="flex size-[18px] items-center justify-center rounded-[5px] transition-colors hover:bg-[var(--icon-hover)] disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent"
             >
               <SizeGlyph size={s} active={s === value} />
             </button>
@@ -113,7 +113,7 @@ export function SizeControl({
                   setOpen(false);
                 }}
                 className={cn(
-                  "flex size-[18px] items-center justify-center rounded-[5px] transition-colors hover:bg-secondary",
+                  "flex size-[18px] items-center justify-center rounded-[5px] transition-colors hover:bg-[var(--icon-hover)]",
                   customizing ? "text-foreground" : "text-muted-foreground/60",
                 )}
               >
@@ -135,7 +135,7 @@ export function SizeControl({
                   setOpen(false);
                 }}
                 className={cn(
-                  "flex size-[18px] items-center justify-center rounded-[5px] transition-colors hover:bg-secondary",
+                  "flex size-[18px] items-center justify-center rounded-[5px] transition-colors hover:bg-[var(--icon-hover)]",
                   locked ? "text-foreground" : "text-muted-foreground/60",
                 )}
               >
@@ -155,7 +155,7 @@ export function SizeControl({
                   onReturn();
                   setOpen(false);
                 }}
-                className="flex size-[18px] items-center justify-center rounded-[5px] text-muted-foreground/60 transition-colors hover:bg-secondary hover:text-foreground"
+                className="flex size-[18px] items-center justify-center rounded-[5px] text-muted-foreground/60 transition-colors hover:bg-[var(--icon-hover)] hover:text-foreground"
               >
                 <Undo2 className="size-[11px]" />
               </button>
