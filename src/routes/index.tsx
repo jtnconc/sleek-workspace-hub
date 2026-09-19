@@ -138,7 +138,7 @@ function Workspace({
         )}
       </section>
 
-      <WidgetGrid />
+      {notesEnabled && <WidgetGrid />}
     </div>
   );
 }
