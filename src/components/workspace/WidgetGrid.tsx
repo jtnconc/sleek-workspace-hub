@@ -371,7 +371,7 @@ export function WidgetGrid() {
                   style={{
                     ...(w.tint ? { backgroundColor: tintVar(w.tint) } : {}),
                     ...(alertPhase === "due"
-                      ? { "--pulse-color": accentVar(w.tint ?? "orange") }
+                      ? { "--pulse-color": w.tint ? accentVar(w.tint) : "var(--primary)" }
                       : {}),
                   } as MotionStyle}
                 >
