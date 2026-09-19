@@ -515,7 +515,7 @@ const toggleItem = (itemId: string) => {
                           : "text-muted-foreground",
                       )}
                     >
-                      {l === "es" ? "Español" : "English"}
+                      {l === "es" ? "ESP" : "ENG"}
                     </button>
                   ))}
                 </div>
